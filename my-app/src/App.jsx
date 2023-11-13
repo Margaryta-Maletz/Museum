@@ -1,8 +1,7 @@
-import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/home/home.jsx";
 import ErrorPage from "./components/error-page/about.jsx";
 import About from "./components/about/about.jsx";
-import './App.css'
 import CardDetails from "./components/card-details/card-details.jsx";
 
 const BOOKS =[{
@@ -86,17 +85,25 @@ const BOOKS =[{
         "description": "Secrets of the Javascript Ninja takes you on a journey towards mastering modern JavaScript development in three phases: design, construction, and maintenance. Written for JavaScript developers with intermediate-level skills, this book will give you the knowledge you need to create a cross-browser JavaScript library from the ground up."
     }
 ]
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Home cardData={BOOKS} />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/card/:id",
+        element: <CardDetails cardData={BOOKS} />,
+    },
+    {
+        path: "/about",
+        element: <About />,
+    },
+]);
 function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home cardData={BOOKS} />} />
-        <Route path="/card/:id" element={<CardDetails cardData={BOOKS} />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </Router>
-  )
+    return (
+        <RouterProvider router={router} />
+    )
 }
 
 export default App
