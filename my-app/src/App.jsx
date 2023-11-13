@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
 import Home from "./components/home/home.jsx";
-import About from "./components/home/home.jsx";
-import NotFound from "./components/not-found/not-found.jsx";
-import CardContainer from "./components/card-container/card-container.jsx";
+import ErrorPage from "./components/error-page/about.jsx";
+import About from "./components/about/about.jsx";
+import './App.css'
 import CardDetails from "./components/card-details/card-details.jsx";
 
 const BOOKS =[{
@@ -86,18 +86,16 @@ const BOOKS =[{
         "description": "Secrets of the Javascript Ninja takes you on a journey towards mastering modern JavaScript development in three phases: design, construction, and maintenance. Written for JavaScript developers with intermediate-level skills, this book will give you the knowledge you need to create a cross-browser JavaScript library from the ground up."
     }
 ]
-
 function App() {
   return (
-      <Router>
-          <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/card" element={<CardContainer cardData={BOOKS}/>} />
-              <Route path="/card/:id" element={<CardDetails cardData={BOOKS}/>} />
-              <Route path="*" element={<NotFound />} />
-          </Routes>
-      </Router>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home cardData={BOOKS} />} />
+        <Route path="/card/:id" element={<CardDetails cardData={BOOKS} />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </Router>
   )
 }
 

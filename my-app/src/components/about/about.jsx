@@ -1,7 +1,7 @@
-import { Typography } from '@mui/material';
+import {Typography} from "@mui/material";
 
 const About = () => {
-    return <Typography variant="h1">Welcome to the Home Page</Typography>;
-};
+    return <Typography variant="h1">About page</Typography>
+}
 
 export default About;
